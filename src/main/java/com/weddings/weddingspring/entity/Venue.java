@@ -11,16 +11,18 @@ import java.util.Set;
 @Table(name="venue")
 @Getter
 @Setter
-
 public class Venue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "venueId")
+    @Column(name = "venue_id")
     private Long venueId;
 
-    @Column(name = "venue-name")
+    @Column(name = "venue_name")
     private String  venueName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "venue")
     private Set<BanquetHalls> banquetHalls;
+
+    public Venue() {
+    }
 }

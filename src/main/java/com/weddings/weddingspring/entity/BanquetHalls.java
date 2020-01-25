@@ -1,6 +1,8 @@
 package com.weddings.weddingspring.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,18 +11,19 @@ import java.util.Date;
 
 @Entity
 @Table(name = "banquet-hall")
-@Data
+@Setter
+@Getter
 public class BanquetHalls {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "banquet-id")
+    @Column(name = "banquet_id")
     private Long banquetId;
 
     @ManyToOne
-    @JoinColumn(name = "venue_id", nullable = false)
+    @JoinColumn(name = "venues_id", nullable = false)
     private Venue venue;
 
-    @Column(name = "banquet-name")
+    @Column(name = "banquet_name")
     private String banquetName;
 
     @Column(name = "address1")
@@ -32,7 +35,7 @@ public class BanquetHalls {
     @Column(name = "zip")
     private Long zipCode;
 
-    @Column(name = "old-price")
+    @Column(name = "old_price")
     private int oldPrice;
 
     @Column(name = "price")
@@ -47,17 +50,20 @@ public class BanquetHalls {
     @Column(name = "areas")
     private byte areas;
 
-    @Column(name = "img-url")
+    @Column(name = "img_url")
     private String imgUrl;
 
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "date-created")
+    @Column(name = "date_created")
     @CreationTimestamp
     private Date dateCreated;
 
-    @Column(name = "last-updated")
+    @Column(name = "last_updated")
     @UpdateTimestamp
     private Date lastUpdated;
+
+    public BanquetHalls() {
+    }
 }
