@@ -21,4 +21,6 @@ public class Venue {
     @Column(name = "venue-name")
     private String  venueName;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "venue")
+    private Set<BanquetHalls> banquetHalls;
 }

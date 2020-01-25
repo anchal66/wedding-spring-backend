@@ -16,6 +16,10 @@ public class BanquetHalls {
     @Column(name = "banquet-id")
     private Long banquetId;
 
+    @ManyToOne
+    @JoinColumn(name = "venue_id", nullable = false)
+    private Venue venue;
+
     @Column(name = "banquet-name")
     private String banquetName;
 
