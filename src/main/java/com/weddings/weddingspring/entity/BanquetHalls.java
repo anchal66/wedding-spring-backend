@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "banquet-hall")
+@Table(name = "banquet_hall")
 @Setter
 @Getter
 public class BanquetHalls {
@@ -48,7 +48,7 @@ public class BanquetHalls {
     private int capacity;
 
     @Column(name = "areas")
-    private byte areas;
+    private int areas;
 
     @Column(name = "img_url")
     private String imgUrl;
