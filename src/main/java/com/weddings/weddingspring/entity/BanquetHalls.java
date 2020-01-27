@@ -32,7 +32,7 @@ public class BanquetHalls {
     @Column(name = "address2")
     private String address2;
 
-    @Column(name = "zip")
+    @Column(name = "zip_code")
     private Long zipCode;
 
     @Column(name = "old_price")
