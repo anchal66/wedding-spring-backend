@@ -23,6 +23,9 @@ public class VendorContent {
     @JoinColumn(name = "vendors_id", nullable = false)
     private Vendor vendor;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendorContent")
+    private Set<Comments> comments;
+
     @Column(name = "content_name")
     private String contentName;
 
@@ -49,9 +52,6 @@ public class VendorContent {
 
     @Column(name = "active")
     private boolean active;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor_content")
-    private Set<Comments> comments;
 
     @Column(name = "date_created")
     @CreationTimestamp

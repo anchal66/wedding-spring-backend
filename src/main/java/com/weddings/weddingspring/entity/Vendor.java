@@ -14,13 +14,13 @@ public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vendor_id")
-    private Long venueId;
+    private Long vendorId;
 
     @Column(name = "vendor_name")
-    private String  venueName;
+    private String  vendorName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor")
-    private Set<BanquetHalls> banquetHalls;
+    private Set<VendorContent> vendorContents;
 
     public Vendor() {
     }

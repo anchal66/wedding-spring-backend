@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table("comments")
+@Table(name = "comments")
 @Getter
 @Setter
 public class Comments {
@@ -23,6 +23,8 @@ public class Comments {
     private BanquetHalls banquetHalls;
 
     @ManyToOne
-    @JoinColumn(name = "content_id")
+    @JoinColumn(name = "contents_id")
     private VendorContent vendorContent;
+
+    public Comments(){}
 }

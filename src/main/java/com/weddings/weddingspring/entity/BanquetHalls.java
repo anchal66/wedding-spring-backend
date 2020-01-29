@@ -1,6 +1,5 @@
 package com.weddings.weddingspring.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,7 +10,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "banquet_hall")
+@Table(name = "banquet_halls")
 @Setter
 @Getter
 public class BanquetHalls {
@@ -23,6 +22,9 @@ public class BanquetHalls {
     @ManyToOne
     @JoinColumn(name = "venues_id", nullable = false)
     private Venue venue;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banquetHalls")
+    private Set<Comments> comments;
 
     @Column(name = "banquet_name")
     private String banquetName;
@@ -56,9 +58,6 @@ public class BanquetHalls {
 
     @Column(name = "active")
     private boolean active;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banquet_hall")
-    private Set<Comments> comments;
 
     @Column(name = "date_created")
     @CreationTimestamp
