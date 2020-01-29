@@ -1,6 +1,5 @@
 package com.weddings.weddingspring.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,21 +10,21 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "banquet_hall")
+@Table(name = "vendor_content")
 @Setter
 @Getter
-public class BanquetHalls {
+public class VendorContent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "banquet_id")
-    private Long banquetId;
+    @Column(name = "content_id")
+    private Long contentId;
 
     @ManyToOne
-    @JoinColumn(name = "venues_id", nullable = false)
-    private Venue venue;
+    @JoinColumn(name = "vendors_id", nullable = false)
+    private Vendor vendor;
 
-    @Column(name = "banquet_name")
-    private String banquetName;
+    @Column(name = "content_name")
+    private String contentName;
 
     @Column(name = "address1")
     private String address1;
@@ -45,19 +44,13 @@ public class BanquetHalls {
     @Column(name = "intro")
     private String intro;
 
-    @Column(name = "capacity")
-    private int capacity;
-
-    @Column(name = "areas")
-    private int areas;
-
     @Column(name = "img_url")
     private String imgUrl;
 
     @Column(name = "active")
     private boolean active;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banquet_hall")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendor_content")
     private Set<Comments> comments;
 
     @Column(name = "date_created")
@@ -68,6 +61,6 @@ public class BanquetHalls {
     @UpdateTimestamp
     private Date lastUpdated;
 
-    public BanquetHalls() {
+    public VendorContent() {
     }
 }
