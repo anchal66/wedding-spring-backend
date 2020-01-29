@@ -1,0 +1,84 @@
+CREATE TABLE IF NOT EXISTS `wedding-org`.`banquet-hall` (
+  -- -----------------------------------------------------
+-- Schema wedding-org
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `wedding-org`;
+
+CREATE SCHEMA `wedding-org`;
+USE `wedding-org` ;
+
+-- -----------------------------------------------------
+-- Table `wedding-org`.`product_category`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `wedding-org`.`venue` (
+  `venue_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `venue_name` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`venue_id`))
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+- -----------------------------------------------------
+-- Table `wedding-org`.`product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `wedding-org`.`banquet-hall` (
+  `banquet_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `banquet_name` VARCHAR(255) DEFAULT NULL,
+  `address1` VARCHAR(255) DEFAULT NULL,
+  `address2` VARCHAR(255) DEFAULT NULL,
+  `zip` BIGINT(20) default Null,
+  `old_price` DECIMAL(13,2) DEFAULT NULL,
+  `price` DECIMAL(13,2) DEFAULT NULL,
+  `intro` VARCHAR(255) DEFAULT NULL,
+  `capacity` BIGINT(20) DEFAULT NULL,
+  `areas` bigint(20) default null,
+  `img_url` VARCHAR(255) DEFAULT NULL,
+  `active` BIT DEFAULT 1,
+   `date_created` DATETIME(6) DEFAULT NULL,
+  `last_updated` DATETIME(6) DEFAULT NULL,
+  `venues_id` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`banquet_id`),
+  KEY `fk_category` (`venues_id`),
+  CONSTRAINT `fk_category` FOREIGN KEY (`venues_id`) REFERENCES `venue` (`venue_id`)
+) 
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+-----------------------------------------------------------------------------
+select * from banquet_hall;
+insert into banquet_hall(venues_id, banquet_name,address1,address2,zip,old_price,
+						 price,intro,capacity,areas,img_url,active)
+Values(3,'Test Banquet 3','near Unkwon3','Anu Nagar',110061,2000.10,1000.50, 
+	  'Hello Welcsaome thereNew faciltynew work',200,6,'img2',true);
+==========================================================================
+select * from venue;
+
+Insert into venue(venue_name) Values('Akshardham');
+
+==============================
+To Post/GET banquet hall in venue 1
+http://localhost:8080/api/banquet_halls
+
+JSON:
+
+{
+        "banquetName": "Test Banquet fromPost4",
+        "address1": "Weird Place",
+        "address2": "Noida 18",
+        "zipCode": 110061,
+        "oldPrice": 6000,
+        "price": 5001,
+        "intro": "Hello Welcsaome thereNew faciltynew work",
+        "capacity": 200,
+        "areas": 6,
+        "imgUrl": "img2",
+        "active": true,
+        "venue": "http://localhost:8080/api/venues/1"    
+ }
+
+===========================================================
+To Post/GET Venue:
+http://localhost:8080/api/venues
+
+JSON:
+{
+	"venueName": "Noida",
+	"banquetHalls": []
+}
